@@ -17,6 +17,7 @@ export class OrderDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, public dialog: MatDialog) {
 
       this.orders = data.orders;
+      console.log(this.orders);
 
 
   }
