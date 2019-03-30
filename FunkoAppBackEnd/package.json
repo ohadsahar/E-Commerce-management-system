@@ -1,16 +1,13 @@
 {
-  "name": "FunkoAppBackEnd",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:server": "nodemon server.js"
-  },
-  "keywords": ["test"],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "name": "funko-app",
+  "version": "0.0.0",
+  "private": true,
   "dependencies": {
+    "@types/lodash": "^4.14.123",
+    "bootstrap": "^4.3.1",
+    "hammerjs": "^2.0.8",
+    "ng4-loading-spinner": "^1.2.3",
+    "tslib": "^1.9.0",
     "accesscontrol": "^2.2.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -21,9 +18,6 @@
     "moment": "^2.24.0",
     "mongoose": "^5.4.19",
     "multer": "^1.4.1"
-  },
-  "devDependencies": {
-    "jest": "^24.5.0",
-    "nodemon": "^1.18.10"
   }
+
 }

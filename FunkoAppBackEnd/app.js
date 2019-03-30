@@ -22,7 +22,7 @@ mongoose.connect("mongodb+srv://ohad:ppd53brx!@cluster0-vw61b.mongodb.net/FunkoP
 })
 .catch((error) => {
 
-  
+
   console.log(error);
 });
 
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/images", express.static(path.join("assets/images")));
+app.use("/images", express.static(path.join("./assets/images")));
 app.use("/admin/products",products);
 app.use("/admin/users",users);
 app.use("/admin/carts",carts);

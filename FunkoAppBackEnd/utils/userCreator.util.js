@@ -10,16 +10,16 @@ async function CreateUser(userData) {
             const hashPassword = await bycrypt.hash(userData.password, 10);
             userData.email = userData.email.toLowerCase();
             const newUser = new userSchema({
-    
+
                 email: userData.email,
                 password: hashPassword,
                 firstname: userData.firstname,
                 lastname: userData.lastname,
                 address: userData.address,
-                role: 'admin'
-                
+                role: 'user'
+
             });
-    
+
             newUser.save();
             return { success: true, user: newUser };
         }
@@ -39,13 +39,13 @@ async function UpdateCurrentUser(UserData, id) {
             address: UserData.address,
             role: UserData.role
         })
-        
+
         await userSchema.findOneAndUpdate({_id: id}, user);
-     
+
         return {message: true, newuser: user};
     } catch (error) {
         return {message: false};
-        
+
     }
 }
 
