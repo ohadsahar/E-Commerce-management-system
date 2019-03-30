@@ -56,12 +56,14 @@ export class DialogStatusComponent implements OnInit {
     if (data.orders.January) {
       this.TopProductsFunc(data.orders.January);
       this.TopFiveCustomersByOrder(data.orders.January);
+      this.TopFiveBigBuyers(data.orders.January);
       this.AvgSalesMonths(data.orders.January);
     }
 
     if (data.orders.February) {
       this.TopProductsFunc(data.orders.February);
       this.TopFiveCustomersByOrder(data.orders.February);
+      this.TopFiveBigBuyers(data.orders.February);
       this.AvgSalesMonths(data.orders.February);
     }
 
@@ -83,48 +85,56 @@ export class DialogStatusComponent implements OnInit {
     if (data.orders.May) {
       this.TopProductsFunc(data.orders.May);
       this.TopFiveCustomersByOrder(data.orders.May);
+      this.TopFiveBigBuyers(data.orders.May);
       this.AvgSalesMonths(data.orders.May);
     }
 
     if (data.orders.June) {
       this.TopProductsFunc(data.orders.June);
       this.TopFiveCustomersByOrder(data.orders.June);
+      this.TopFiveBigBuyers(data.orders.June);
       this.AvgSalesMonths(data.orders.June);
     }
 
     if (data.orders.July) {
       this.TopProductsFunc(data.orders.July);
       this.TopFiveCustomersByOrder(data.orders.July);
+      this.TopFiveBigBuyers(data.orders.July);
       this.AvgSalesMonths(data.orders.July);
     }
 
     if (data.orders.August) {
       this.TopProductsFunc(data.orders.August);
       this.TopFiveCustomersByOrder(data.orders.August);
+      this.TopFiveBigBuyers(data.orders.August);
       this.AvgSalesMonths(data.orders.August);
     }
 
     if (data.orders.September) {
       this.TopProductsFunc(data.orders.September);
       this.TopFiveCustomersByOrder(data.orders.September);
+      this.TopFiveBigBuyers(data.orders.September);
       this.AvgSalesMonths(data.orders.September);
     }
 
     if (data.orders.October) {
       this.TopProductsFunc(data.orders.October);
       this.TopFiveCustomersByOrder(data.orders.October);
+      this.TopFiveBigBuyers(data.orders.October);
       this.AvgSalesMonths(data.orders.October);
     }
 
     if (data.orders.November) {
       this.TopProductsFunc(data.orders.November);
       this.TopFiveCustomersByOrder(data.orders.November);
+      this.TopFiveBigBuyers(data.orders.November);
       this.AvgSalesMonths(data.orders.November);
     }
 
     if (data.orders.December) {
       this.TopProductsFunc(data.orders.December);
       this.TopFiveCustomersByOrder(data.orders.December);
+      this.TopFiveBigBuyers(data.orders.December);
       this.AvgSalesMonths(data.orders.December);
       this.isLoading = false;
       this.spinnerService.hide();
@@ -239,17 +249,8 @@ export class DialogStatusComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
   TopFiveBigBuyers(MonthData: any) {
 
-    const idPayoutMap = {};
 
     this.MonthCustomersByBuyersOrder = [];
     this.OrdersCustomerByBuyers = [];
@@ -301,8 +302,9 @@ export class DialogStatusComponent implements OnInit {
       monthData: this.MonthCustomersByBuyersOrder,
       monthName: MonthData[0].month
     });
-
+    console.log(this.GlobalCustomerByBuyersOrder);
   }
+
 
 
 }
