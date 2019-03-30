@@ -76,4 +76,4 @@ typings/
 # FuseBox cache
 .fusebox/
 
-./dev.js
+./dev
