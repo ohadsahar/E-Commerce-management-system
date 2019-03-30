@@ -1,0 +1,44 @@
+<div class="DialogGenrealCss">
+<mat-dialog-content >
+
+<div class="DialogGeneralText" *ngIf="AllFunkoPop.length > 0">Your cart </div>
+<button mat-raised-button  id="checkOut" (click)="DonePurchase()" [mat-dialog-close]="data" *ngIf="AllFunkoPop.length > 0">Checkout</button>
+        <div class="row">
+        <div *ngFor="let product of AllFunkoPop; let i = index">
+            <div class="col-sm-12">
+
+                <mat-card class="example-card" *ngIf="!editAble || !editArray[i]">
+                    <i class="fas fa-trash" (click)="RemoveFromCart(product.id)"></i>
+                    <mat-card-header>
+
+                      <div mat-card-avatar><img [src]="product?.Image" class="example-header-image"/></div>
+                      <mat-card-title >Product name: {{ product?.productName }}</mat-card-title>
+                      <mat-card-subtitle >Price : {{ product?.productPrice }} <i class="fas fa-dollar-sign"></i></mat-card-subtitle>
+
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                      <div mat-card-avatar>
+                        <img [src]="product?.Image" class="ImagePop" />
+                        <div class="MatCardInfo">
+                          <h1>Description</h1>
+                          <p>
+                            {{ product?.productInformation }}
+                          </p>
+                        </div>
+                      </div>
+                    </mat-card-content>
+
+                  </mat-card>
+
+            </div>
+          </div>
+
+          </div>
+
+<div *ngIf="AllFunkoPop.length <= 0">No products in your cart <i class="far fa-sad-cry"></i> </div>
+    <ng4-loading-spinner *ngIf="isLoading"   [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner>
+  </mat-dialog-content>
+  </div>
+
+

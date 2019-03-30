@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Order list</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="DialogOrderCss">
+  <div *ngIf="orders.length>0"></div>
+  <mat-accordion>
+    <div *ngFor="let order of orders;let i = index">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Order number: {{i + 1}}
+        </mat-panel-title>
+        <mat-panel-description>
+              Order id: {{order._id}}<br>
+              Order date: {{order.orderDate}}<br>
+              Total price: {{order.orderTotal}} <i class="fas fa-dollar-sign"></i>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <pre>
+          Order date: {{order.orderDate}}
+
+          Order id: {{order._id}}
+
+          Total price: {{order.orderTotal}} <i class="fas fa-dollar-sign"></i>
+
+          Thanks for buying at Sahar Ohad E-commerce
+
+      </pre>
+
+<div class="ProductList">
+
+  <div class="row">
+
+      <ul *ngFor="let product of order.Cart">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+        <li>Product name: {{product.productName}}</li>
+        <mat-divider></mat-divider>
+        <li id="descriptionScroll">Product description: {{product.productInformation}}</li>
+        <mat-divider></mat-divider>
+        <li>Product price:{{product.productPrice}} <i class="fas fa-dollar-sign"></i></li>
+        <mat-divider></mat-divider>
+        <li><img src="{{product.Image}}" class="img-thumbnail" id="imgOhadSahar"></li>
+        <mat-divider></mat-divider>
+        <div class="SomeSpace"></div>
+      </div>
+      </ul>
+    </div>
+
+  </div>
+
+    </mat-expansion-panel>
+  </div>
+  </mat-accordion>
+</div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+<div *ngIf="orders.length<0">No orders has been made</div>

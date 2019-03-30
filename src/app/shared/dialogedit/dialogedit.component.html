@@ -1,0 +1,26 @@
+<div class="DialogGeneralText">Edit your account </div>
+<mat-dialog-content class="mat-typography">
+    <form class="example-form" id="ProfileUpdate" (submit)="ChangeForm(ProfileUpdate)" #ProfileUpdate="ngForm">
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Firstname" value="{{UserData?.firstname}}" disabled="true">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Lastname" value="{{UserData?.lastname}}" disabled="true">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput  name="address" #address="ngModel"  ngModel  placeholder="{{UserData?.address}}" value="{{UserData?.address}}" required >
+              </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" value="{{UserData?.email}}" disabled="true">
+        </mat-form-field>
+        <button mat-button  type="submit" cdkFocusInitial>Update your account</button>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+
+</mat-dialog-actions>

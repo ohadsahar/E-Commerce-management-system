@@ -1,0 +1,118 @@
+.DialogOrderCss #imgOhadSahar {
+
+  width: 100px;
+  height: 100px;
+}
+
+.SomeSpace {
+
+  margin-top: 5%;
+}
+.DialogOrderCss pre {
+
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}
+.mat-expansion-panel ul {
+
+  list-style-type: none;
+  display: contents;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
+
+font-size: 15px !important;
+  font-weight: bold;
+  font-family: "Dosis", sans-serif;
+
+
+}
+.ProductList{
+
+  overflow-x: scroll;
+  display: contents;
+}
+
+.mat-expansion-panel-body {
+
+  font-weight: bold;
+  height: 500px;
+  font-family: "Dosis", sans-serif;
+  display: inherit;
+  overflow-y: scroll;
+
+}
+
+pre {
+
+  overflow-x: hidden;
+  font-weight: bold;
+  font-family: "Dosis", sans-serif;
+}
+
+.fa-dollar-sign:before {
+  color: green;
+}
+
+#descriptionScroll {
+
+  width: 100px;
+  height: 50px;
+  overflow-y: scroll;
+}
+.mat-dialog-title {
+
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  font-family: "Dosis", sans-serif;
+
+}
+
+::ng-deep .mat-expansion-panel-header {
+
+  padding: 30px;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+
+  padding: 35px;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
+
+  display: flow-root !important;
+}
+
+.mat-dialog-container {
+
+  background-image: linear-gradient(#457b9d, #a8dadc, #f1faee) !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
+
+    font-size: 10px !important;
+    display: flow-root !important;
+
+  }
+  .mat-expansion-panel-body {
+
+    font-weight: bold;
+    font-family: "Dosis", sans-serif;
+    display: contents;
+    font-size: 16px;
+
+  }
+
+
+  pre {
+
+    width: 100%;
+    font-size: 11px !important;
+    margin-top: 5%;
+    font-weight: bold;
+  }
+}

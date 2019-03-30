@@ -1,0 +1,89 @@
+
+/* Navbar css */
+
+.Menu {
+  background-color: #457b9d;
+}
+a {
+  color: white;
+  font-weight: bold;
+  font-family: "Dosis", sans-serif;
+  font-size: 14px;
+}
+
+
+a:hover {
+  color: red;
+}
+
+.mat-tab-label .mat-tab-label-content {
+
+  font-family: "Dosis", sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+}
+#logoimg {
+  width: 50px;
+  height: auto;
+  margin-top: 5px;
+
+}
+
+::ng-deep .mat-tab-body-content {
+
+  overflow: hidden;
+}
+
+/*End of Navbar css */
+
+/*Body css */
+
+.Body {
+  height: 100%;
+  background-image: linear-gradient(#457b9d, #a8dadc, #f1faee);
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.mat-tab-group {
+  margin-bottom: 48px;
+
+  padding: 20px;
+}
+
+.mat-tab-label {
+  color: white;
+
+}
+
+p{
+
+  color: white;
+  width: 300px;
+  margin: auto;
+  font-family: "Dosis", sans-serif;
+  text-align: center;
+  margin-top: 5%;
+  font-size: 14px;
+  margin-bottom: 2%;
+
+}
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+.img-thumbnail {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  display: block;
+
+}
+
+.nav-link {
+
+  color: white !important;
+  cursor: pointer;
+}
+
+
+

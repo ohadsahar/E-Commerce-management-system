@@ -1,0 +1,38 @@
+<div class="SignUp">
+<h2 mat-dialog-title>Signup</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="example-form">
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="text"  (input)="SignUpForm()" placeholder="Insert your name" [formControl]="firstname" required >
+            <mat-error *ngIf="firstname.invalid">{{GetPasswordErrorMessage()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <input matInput type="text"  (input)="SignUpForm()" placeholder="Insert your lastname" [formControl]="lastname" required >
+              <mat-error *ngIf="lastname.invalid">{{GetPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput type="text"  (input)="SignUpForm()" placeholder="Insert your address" [formControl]="address" required >
+                <mat-error *ngIf="address.invalid">{{GetPasswordErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="email"  (input)="SignUpForm()" placeholder="Email" [formControl]="email" required >
+        <mat-error *ngIf="email.invalid">{{GetEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <input matInput [type]="hide ? 'password' : 'text'" (input)="SignUpForm()" placeholder="Password"  [formControl]="password" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="email.invalid">{{GetPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="Validate">Submit</button>
+</mat-dialog-actions>
+</div>

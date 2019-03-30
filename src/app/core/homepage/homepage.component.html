@@ -1,0 +1,52 @@
+
+
+<div *ngIf="LoggedIn">
+<div class="Menu" >
+  <ul class="nav">
+      <li class="nav-item">
+         <img src="../../../assets/images/funkoPopLogo.png" id="logoimg">
+        </li>
+    <li class="nav-item">
+        <a class="nav-link" (click)="SignUpDialog()">Signup</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" (click)="LoginDialog()">Login</a>
+        </li>
+
+
+  </ul>
+</div>
+<div class="Body">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Your collection">
+      <p>
+        Share your pop's with all your friends
+      </p>
+      <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4">
+          <img
+            class="img-thumbnail"
+            src="../../../assets/images/Collection.png"
+          />
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+
+
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Pop's chat"><p>Time to talk with funko pop collectors</p>
+    </mat-tab>
+    <mat-tab label="The weekly rated pop"><p>Every week, One pop will be selected by you, Funko collectors</p>
+      <img
+            class="img-thumbnail"
+            src="../../../assets//images/naruto.jpg"
+          />
+    </mat-tab>
+  </mat-tab-group>
+</div>
+</div>

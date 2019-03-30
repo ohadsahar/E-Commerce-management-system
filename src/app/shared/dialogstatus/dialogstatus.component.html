@@ -1,0 +1,148 @@
+
+
+<ng4-loading-spinner *ngIf="isLoading" [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Top 5 products">
+        <div class="OhadSaharStats">
+            <h2 mat-dialog-title>List of the top 5 products</h2>
+            <mat-dialog-content class="mat-typography">
+            <div *ngFor="let month of GlobalArray">
+              <h1>{{month.monthName}}</h1>
+            <div class="row">
+              <div *ngFor="let items of month.monthData; let i = index">
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+            <div *ngIf="i < 5">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar><img [src]="items.name?.Image" class="example-header-image"/></div>
+                      <mat-card-title><b>Product id:</b> {{items.name?.id}}</mat-card-title>
+                      <mat-card-title><b>Product Number of sales:</b> {{items?.count}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="MatCardInfo">
+                        <p><span>Product name:</span> {{items.name?.productName}}</p>
+                        <p><span>Product description:</span> {{items.name?.productInformation}}</p>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+              </div>
+            </div>
+            <div class="SomeSpace"></div>
+            <mat-divider></mat-divider>
+            </div>
+            </div>
+              </div>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+              <button mat-button mat-dialog-close>Close</button>
+            </mat-dialog-actions>
+            </div>
+    </mat-tab>
+    <mat-tab label="Top 5 customers by order">
+
+        <div class="OhadSaharStats">
+            <h2 mat-dialog-title>List of the top 5 products</h2>
+            <mat-dialog-content class="mat-typography">
+
+            <div *ngFor="let customer of GlobalCustomerByOrder">
+
+              <h1>{{customer.monthName}}</h1>
+            <div class="row">
+
+              <div *ngFor="let items of customer.monthData; let i = index">
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+            <div *ngIf="i < 5">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                      <mat-card-title><b>User id:</b> {{items.name?.userid}}</mat-card-title>
+                      <mat-card-title><b> Number of orders:</b> {{items?.count}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="MatCardInfo">
+                        <p><span>Firstname:</span> {{items.name?.firstname}}</p>
+                        <p><span>Lastname:</span> {{items.name?.lastname}}</p>
+                        <p><span>Email:</span> {{items.name?.email}}</p>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+              </div>
+            </div>
+            <div class="SomeSpace"></div>
+            <mat-divider></mat-divider>
+            </div>
+            </div>
+              </div>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+              <button mat-button mat-dialog-close>Close</button>
+            </mat-dialog-actions>
+            </div>
+    </mat-tab>
+    <mat-tab label="Top 5 customers by order">
+        <div class="OhadSaharStats">
+            <h2 mat-dialog-title>List of the top 5 customers by order</h2>
+            <mat-dialog-content class="mat-typography">
+            <div *ngFor="let customer of GlobalCustomerByBuyersOrder">
+              <h1>{{customer.monthName}}</h1>
+            <div class="row">
+              <div *ngFor="let items of customer.monthData; let i = index">
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+            <div *ngIf="i < 5">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                      <mat-card-title><b>User id:</b> {{items.name?.userid}}</mat-card-title>
+                      <mat-card-title><b> Number of orders:</b> {{items?.count}}</mat-card-title>
+                      <mat-card-title><span>Order total:</span> {{items.name?.ordertotal}} <i class="fas fa-dollar-sign"></i></mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="MatCardInfo">
+                        <p><span>Firstname:</span> {{items.name?.firstname}}</p>
+                        <p><span>Lastname:</span> {{items.name?.lastname}}</p>
+                        <p><span>Email:</span> {{items.name?.email}}</p>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+              </div>
+            </div>
+            <div class="SomeSpace"></div>
+            <mat-divider></mat-divider>
+            </div>
+            </div>
+              </div>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+              <button mat-button mat-dialog-close>Close</button>
+            </mat-dialog-actions>
+            </div>
+
+
+
+    </mat-tab>
+    <mat-tab label="Average Sales">
+
+        <div class="OhadSaharSalesStats">
+            <h2 mat-dialog-title>Average Sales each month</h2>
+            <mat-dialog-content class="mat-typography">
+
+            <div *ngFor="let month of GlobalSales">
+                <div class="row">
+                <h1>{{month.monthName}}</h1>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                      <mat-card-title> <b>Average monthly income:</b>{{month.monthData.average}} <i class="fas fa-dollar-sign"></i></mat-card-title>
+                      <mat-card-title><b>Total orders:</b>{{month.monthData.totalorders}}</mat-card-title>
+                    </mat-card-header>
+                  </mat-card>
+                </div>
+                </div>
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+              <button mat-button mat-dialog-close>Close</button>
+            </mat-dialog-actions>
+            </div>
+
+    </mat-tab>
+  </mat-tab-group>
+

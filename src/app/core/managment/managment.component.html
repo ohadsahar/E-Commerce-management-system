@@ -1,0 +1,285 @@
+<div *ngIf="LoggedIn">
+    <div class="Menu" >
+        <ul class="nav">
+            <li class="nav-item">
+               <img src="../../../assets/images/funkoPopLogo.png" id="logoimg">
+              </li>
+          <li class="nav-item">
+              <a class="nav-link" (click)="LogOut()"><i class="fas fa-sign-out-alt"></i> Log out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="Status()" *ngIf="UserInfo?.role === 'admin'"><i class="fas fa-chart-bar"></i> Statistics</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" (click)="EditProfile()"><i class="fas fa-id-badge"></i> Profile</a>
+                </li>
+        </ul>
+      </div>
+
+<div class="MainPage">
+<div class="SearchSection">
+  <mat-form-field class="SearchInput">
+    <input matInput type="text" (input)="SearchRequest($event.target.value)" placeholder="Search(Name, price , etc...)" required>
+    <i class="fas fa-search"></i>
+  </mat-form-field>
+</div>
+<div class="actionButtons">
+    <button mat-button (click)="openCollection()" id="clipboard"><i class="fas fa-cart-arrow-down"></i></button>
+  <i class="fas fa-plus" (click)="CreateNewProduct()" id="iconbutton" *ngIf="UserInfo?.role === 'admin'"></i>
+  <button mat-button (click)="GetOrders()" id="nearclipboard">  <i class="fas fa-list-alt"></i></button>
+
+
+</div>
+
+<div class="row">
+
+  <mat-card class="create" *ngIf="CreateAble">
+      <button mat-button (click)="CancelNew()">
+      <i class="far fa-window-close"  ></i>
+    </button>
+      <div id="krembo">Add</div>
+
+    <form [formGroup]="thirdFormGroup">
+
+        <div
+          class="image-preview"
+          *ngIf="imagePreview !== '' && imagePreview"
+        >
+          <img [src]="imagePreview" class="ImagePop" />
+        </div>
+      </form>
+    <mat-card-content>
+      <form
+        (submit)="RegisterNewPop()"
+        class="example-form"
+        enctype="multipart/form-data"
+      >
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Your's funko:"
+            [formControl]="productName"
+            required
+          />
+          <mat-error *ngIf="productName.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Your's funko price:"
+            [formControl]="productPrice"
+            required
+          />
+          <mat-error *ngIf="productPrice.invalid">{{
+            getProductPriceError()
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea
+            matInput
+            placeholder="Your description:"
+            [formControl]="productInformation"
+            required
+          ></textarea>
+          <mat-error *ngIf="productInformation.invalid">{{
+            getProductPriceError()
+          }}</mat-error>
+        </mat-form-field>
+        <form [formGroup]="thirdFormGroup">
+          <div>
+            <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+            <button
+              mat-stroked-button
+              type="button"
+              (click)="filePicker.click()"
+            >
+              Upload picture
+            </button>
+            <input
+              type="file"
+              #filePicker
+              (change)="onImagePicked($event)"
+              style="visibility: hidden"
+            />
+          </div>
+
+        </form>
+        <button mat-raised-button type="submit" color="accent" id="AddButton">
+          Add the funko
+        </button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions> </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="row">
+
+
+
+  <div *ngFor="let product of allProducts; let i = index">
+    <div class="col-sm-12">
+
+        <mat-card class="example-card" *ngIf="!editAble || !editArray[i]">
+            <mat-card-header>
+              <button *ngIf="UserInfo?.role === 'admin'"
+                mat-button
+                id="trashbutton"
+                (click)="openDialog(product?.productName, product?.id)"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+
+
+              <div mat-card-avatar><img [src]="product?.Image" class="example-header-image"/></div>
+              <mat-card-title *ngIf="!editArray[i]">Product name: {{ product?.productName }}</mat-card-title>
+              <mat-card-subtitle *ngIf="!editArray[i]">Price : {{ product?.productPrice }} <i class="fas fa-dollar-sign"></i></mat-card-subtitle>
+
+            </mat-card-header>
+            <mat-divider></mat-divider>
+
+
+
+            <mat-card-content>
+              <div mat-card-avatar>
+                <img [src]="product?.Image" class="ImagePop" />
+                <div class="MatCardInfo">
+                  <h1>Description</h1>
+                  <p>
+
+                    {{ product?.productInformation }}
+                  </p>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions *ngIf="!editAble || !editArray[i]">
+                <button mat-button (click)="AddToCart(product.id)"><i class="fas fa-shopping-cart"></i></button>
+                <button mat-button (click)="Edit(product.id); editArray[i] = !editArray[i]">
+                  <i class="fas fa-pen" *ngIf="!editAble && UserInfo?.role === 'admin'"></i>
+                </button>
+              </mat-card-actions>
+          </mat-card>
+      <mat-card class="edit-card" *ngIf="editAble && editArray[i]">
+        <h4>Edit</h4>
+        <mat-card-header>
+      <button
+      mat-button
+      id="trashbutton"
+      (click)="openDialog(product?.productName, product?.id)">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+
+    <button
+    mat-button
+    id="editbutton"
+    (click)="CancelEdit(); editArray[i] = !editArray[i]">
+    <i class="far fa-window-close"  ></i>
+  </button>
+
+          <div mat-card-avatar><img [src]="product?.Image" class="example-header-image"/></div>
+
+          <mat-card-title>
+
+              <mat-form-field>
+                  <input
+                  matInput
+                  placeholder="{{product?.productName}}"
+                  [formControl]="productName"
+                  required
+                />
+                <mat-error *ngIf="productName.invalid">{{
+                  getErrorMessage()
+                }}</mat-error>
+                </mat-form-field>
+          </mat-card-title>
+
+          <mat-card-subtitle>
+              <mat-form-field>
+            <input
+            matInput
+            placeholder="{{product?.productPrice}}"
+            [formControl]="productPrice"
+            required
+          />
+          <mat-error *ngIf="productPrice.invalid">{{
+            getProductPriceError()
+          }}</mat-error>
+
+</mat-form-field>
+
+
+          </mat-card-subtitle>
+
+        </mat-card-header>
+
+
+        <mat-card-content>
+
+          <div mat-card-avatar *ngIf="editAble && editArray[i]">
+            <div class="ShowImages">
+
+            <div class="col-sm-6 col-md-6  col-lg-6">
+                <h6>Old picture:</h6>
+                <img [src]="product?.Image" class="ImagePop" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <h6>New picture:</h6>
+                <div
+
+              class="image-preview"
+              *ngIf="imagePreview !== '' && imagePreview">
+              <img [src]="imagePreview" class="ImagePop" />
+
+
+              </div>
+            </div>
+
+          </div>
+              <form [formGroup]="thirdFormGroup">
+                  <div>
+                    <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+                    <button
+                      mat-stroked-button
+                      type="button"
+                      (click)="filePicker.click()"
+                    >
+                      Upload picture
+                    </button>
+                    <input
+                      type="file"
+                      #filePicker
+                      (change)="onImagePicked($event)"
+                      style="visibility: hidden"
+                    />
+                  </div>
+
+                </form>
+
+              <div class="MatCardInfo" >
+                <h1>Description - Editable</h1>
+                <textarea
+            matInput
+            placeholder="{{product?.productInformation}}"
+            [formControl]="productInformation"
+            required
+          ></textarea>
+
+              </div>
+
+            </div>
+
+
+        </mat-card-content>
+        <button mat-raised-button id="UpdatePopButton" (click)="UpdatePop(product?.id);editArray[i] = !editArray[i]">Update your pop</button>
+      </mat-card>
+
+
+    </div>
+
+  </div>
+</div>
+</div>
+
+</div>

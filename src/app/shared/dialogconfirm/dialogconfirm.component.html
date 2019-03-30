@@ -1,0 +1,24 @@
+
+<div class="DialogConfirmCss">
+
+
+<h2 mat-dialog-title id="PaymentSection">Payment section</h2>
+
+
+<mat-dialog-content class="mat-typography">
+  <mat-list role="list" *ngFor="let product of AllFunkoPop">
+    <mat-list-item role="listitem">Product name: {{product?.productName}}</mat-list-item>
+    <mat-list-item role="listitem">   Product price: {{product?.productPrice}}  <i class="fas fa-dollar-sign"></i></mat-list-item>
+    <mat-list-item role="listitem"> Product description:{{product?.productInformation}}</mat-list-item>
+    <mat-list-item role="listitem">  <img [src]="product?.Image" class="example-header-image"/></mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+
+</mat-dialog-content>
+<h1>Total price: {{data?.TotalPrice}} <i class="fas fa-dollar-sign"></i></h1>
+<mat-dialog-actions align="end">
+
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Purchase</button>
+</mat-dialog-actions>
+</div>
