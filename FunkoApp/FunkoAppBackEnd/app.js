@@ -1,30 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+
 const products = require("./routes/products");
 const users = require("./routes/users");
 const carts = require("./routes/cart");
 const orders = require("./routes/orders");
 const path = require("path");
+const Connection = require("./dev");
 //returing us an express app
 const app = express();
 
-
-
-
-//writing to our database in the mongodb and is name:first
-mongoose.connect("mongodb+srv://ohad:ppd53brx!@cluster0-vw61b.mongodb.net/FunkoPop?retryWrites=true",  { useNewUrlParser: true })
-.then(() =>{
-
-
-  console.log("Connected to server");
-
-})
-.catch((error) => {
-
-  
-  console.log(error);
-});
+Connection.ConnectMongoose();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
