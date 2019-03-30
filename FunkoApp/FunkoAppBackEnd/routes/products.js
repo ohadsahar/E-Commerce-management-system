@@ -13,12 +13,12 @@ const ProductGetterUtil = require("../utils/productGetter.util");
 
 const ac = new AccessControl();
 
-ac.grant('user')                             
+ac.grant('user')
     .readAny('product')
-  .grant('admin')                   
-    .extend('user')         
-    .readAny('product')                
-    .updateAny('product', ['product'])  
+  .grant('admin')
+    .extend('user')
+    .readAny('product')
+    .updateAny('product', ['product'])
     .deleteAny('product')
     .createOwn('product');
 
@@ -44,7 +44,7 @@ router.post("",upload, async (req, res) => {
         const ProductCreated = await ProductCreatorUtil.CreateProduct(req);
         const GetProductsCount = await ProductGetterUtil.GetProductsCount();
 
-    
+
         res.status(200).json({
           message: ProductCreated.success,
           products: ProductCreated.product,
@@ -61,10 +61,10 @@ router.post("",upload, async (req, res) => {
     res.status(400).json({
       message: 'Yuston we have a problem:' + error
     })
-    
-    
+
+
   }
- 
+
 });
 
 router.get("", async (req, res) => {
@@ -87,7 +87,7 @@ router.get("", async (req, res) => {
 
 router.get("/:productid", async(req,res) => {
 
- 
+ try {
   if(req.params.productid) {
     const FindProductById = await ProductGetterUtil.GetOneUser(req.params.productid);
     const GetFullInfo = await ProductGetterUtil.GetFullInformationProduct(FindProductById);
@@ -100,8 +100,14 @@ router.get("/:productid", async(req,res) => {
       Image: GetFullInfo.InfoProduct.Image
     });
   }
+ }  catch (error) {
+  res.status(400).json({
+    message: 'Yuston we have a problem:' + error
+  })
+}
 
-  
+
+
 });
 
 router.get("/:keyword/:keyword", async (req,res) => {
@@ -109,13 +115,13 @@ router.get("/:keyword/:keyword", async (req,res) => {
   try {
     const GetProducts = await ProductGetterUtil.GetProductsByKeyword(req.params.keyword);
     const GetProductsCount = await ProductGetterUtil.GetProductsCount();
-  
+
     res.status(200).json({
         message: GetProducts.message,
         products: GetProducts.products,
         ProductsCount: GetProductsCount
     });
-  
+
   } catch (error) {
 
     res.status(400).json({
@@ -129,7 +135,7 @@ router.put("/:productid",upload, async(req,res) => {
 
 
  try {
-   
+
   const permission = ac.can(Global.role).updateAny('product');
   if (permission.granted) {
   const GetProductsCount = await ProductGetterUtil.GetProductsCount();
@@ -147,11 +153,11 @@ router.put("/:productid",upload, async(req,res) => {
   })
  }
 
-  
+
 });
 
 router.delete("/:productid", async (req, res) => {
-  
+
   try {
     const permission = ac.can(Global.role).deleteAny('product');
     if (permission.granted) {
