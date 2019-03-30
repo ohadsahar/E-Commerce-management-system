@@ -302,7 +302,7 @@ export class DialogStatusComponent implements OnInit {
       monthData: this.MonthCustomersByBuyersOrder,
       monthName: MonthData[0].month
     });
-    console.log(this.GlobalCustomerByBuyersOrder);
+
   }
 
 
